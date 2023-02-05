@@ -5,10 +5,13 @@ import {
   EmbedBuilder,
   AutocompleteInteraction,
 } from "discord.js";
-
 interface Skill {
   name: string;
   level: number;
+}
+interface FusionSkill {
+  demon1: string;
+  demon2: string;
 }
 
 const RequestDemonCommand = {
@@ -76,14 +79,29 @@ const RequestDemonCommand = {
 
         for (let i = 0; i < formattedSkillList.length; i++) {
           let skill = formattedSkillList[i];
+
+          if(skill.level < 100){
           embed.addFields({
             name: skill.name,
             value:
-              skill.level == 0 ? "Innate" : skill.level > 99 ? "Special Skill" : `Learned at level ${skill.level}`,
+              skill.level == 0 ? "Innate" : `Learned at level ${skill.level}`,
             inline: true,
           });
         }
 
+          if(game.specialSkills && skill.level == 3883){
+            const fusionskill : FusionSkill=
+              game.specialSkills[`${skill.name}` as keyof typeof game.specialSkills];
+              if(fusionskill){
+              embed.addFields({
+                name: skill.name,
+                value:
+                  `Fusion skill (${fusionskill.demon1} and ${fusionskill.demon2})`,
+                inline: true,
+              });
+            }}
+      }
+      
         interaction.reply({ embeds: [embed] });
       } else {
         interaction.reply("Demon not found!");
