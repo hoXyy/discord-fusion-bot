@@ -1,0 +1,74 @@
+{
+    "Cadenza": {
+        "demon1": "Orpheus",
+        "demon2": "Apsaras"
+      },
+      "Armageddon": {
+        "demon1": "Satan",
+        "demon2": "Lucifer"
+      },
+      "Scarlet Havoc": {
+        "demon1": "Ares",
+        "demon2": "Siegfried"
+      },
+      "Shadow Hound": {
+        "demon1": "Cu Chulainn",
+        "demon2": "Scathach"
+      },
+      "Ardhanari": {
+        "demon1": "Parvati",
+        "demon2": "Shiva"
+      },
+      "King and I": {
+        "demon1": "Jack Frost",
+        "demon2": "King Frost"
+      },
+      "Thunder Call": {
+        "demon1": "Take-Mikazuchi",
+        "demon2": "Thor"
+      },
+      "Justice": {
+        "demon1": "Angel",
+        "demon2": "Archangel"
+      },
+      "Jack Brothers": {
+        "demon1": "Jack Frost",
+        "demon2": "Pyro Jack"
+      },
+      "Last Judge": {
+        "demon1": "Mithra",
+        "demon2": "Metatron"
+      },
+      "Raktapaksha": {
+        "demon1": "Gurr",
+        "demon2": "Garuda"
+      },
+      "Dreamfest": {
+        "demon1": "Incubus",
+        "demon2": "Succubus"
+      },
+      "Summer Dream": {
+        "demon1": "Oberon",
+        "demon2": "Titania"
+      },
+      "Trickster": {
+        "demon1": "Loki",
+        "demon2": "Susanoo"
+      },
+      "Frolic": {
+        "demon1": "Pixie",
+        "demon2": "Narcissus"
+      },
+      "Best Friends": {
+        "demon1": "Forneus",
+        "demon2": "Decarabia"
+      },
+      "Infinity": {
+        "demon1": "Ananta",
+        "demon2": "Vishnu"
+      },
+      "Valhalla": {
+        "demon1": "Valkyrie",
+        "demon2": "Odin"
+      }
+}
