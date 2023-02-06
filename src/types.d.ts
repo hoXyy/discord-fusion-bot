@@ -22,12 +22,16 @@ declare module "discord.js" {
 export interface Games {
   p3: Game;
   p4g: Game;
+  smtv: Game;
 }
 
 interface Game {
   color: number;
   demons: Demons;
-  specialSkills?: object;
+  options: {
+    hasFusionSkills: boolean;
+    fusionSkills?: FusionSkills;
+  }
 }
 
 interface Demons {
@@ -37,17 +41,26 @@ interface Demons {
 type Demon = {
   [key: string]: any;
   heart?: string;
-  inherits: string;
+  inherits?: string;
   lvl: number;
+  resists: string;
   race: string;
   stats: number[];
   skills: Skill;
+  affinities?: number[];
+  ailments?: string;
+  price?: number;
 };
 
 interface Skill {
   [key: string]: number;
 }
 
+interface FusionSkills {
+  [key: string]: FusionSkill;
+}
+
 interface FusionSkill {
-  [key: string]: any
+  demon1: string;
+  demon2: string;
 }
