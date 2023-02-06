@@ -1,5 +1,5 @@
 import Games from "../games";
-import * as fs from 'fs';
+import * as fs from "fs";
 import {
   SlashCommandBuilder,
   ChatInputCommandInteraction,
@@ -57,11 +57,37 @@ const RequestDemonCommand = {
         formattedSkillList.sort((a, b) => {
           return a.level - b.level;
         });
-        var file = new AttachmentBuilder(`src/games/${interaction.options.getString("game", true)}/data/DemonImages/DroppedTheCards.webp`);
+        var file = new AttachmentBuilder(
+          `src/games/${interaction.options.getString(
+            "game",
+            true
+          )}/data/DemonImages/DroppedTheCards.webp`
+        );
         var DemonImageName = `DroppedTheCards.webp`;
-        if (fs.existsSync(`src/games/${interaction.options.getString("game", true)}/data/DemonImages/${interaction.options.getString("demon", true)}.webp`)) {
-          file = new AttachmentBuilder(`src/games/${interaction.options.getString("game", true)}/data/DemonImages/${interaction.options.getString("demon", true)}.webp`);
-          DemonImageName = `${interaction.options.getString("demon", true)}.webp`;
+        if (
+          fs.existsSync(
+            `src/games/${interaction.options.getString(
+              "game",
+              true
+            )}/data/DemonImages/${interaction.options.getString(
+              "demon",
+              true
+            )}.webp`
+          )
+        ) {
+          file = new AttachmentBuilder(
+            `src/games/${interaction.options.getString(
+              "game",
+              true
+            )}/data/DemonImages/${interaction.options.getString(
+              "demon",
+              true
+            )}.webp`
+          );
+          DemonImageName = `${interaction.options.getString(
+            "demon",
+            true
+          )}.webp`;
         }
         let embed = new EmbedBuilder()
           .setColor(game.color)
@@ -88,27 +114,29 @@ const RequestDemonCommand = {
         for (let i = 0; i < formattedSkillList.length; i++) {
           let skill = formattedSkillList[i];
 
-          if(skill.level < 100){
-          embed.addFields({
-            name: skill.name,
-            value:
-              skill.level == 0 ? "Innate" : `Learned at level ${skill.level}`,
-            inline: true,
-          });
-        }
+          if (skill.level < 100) {
+            embed.addFields({
+              name: skill.name,
+              value:
+                skill.level == 0 ? "Innate" : `Learned at level ${skill.level}`,
+              inline: true,
+            });
+          }
 
-          if(game.specialSkills && skill.level == 3883){
-            const fusionskill : FusionSkill=
-              game.specialSkills[`${skill.name}` as keyof typeof game.specialSkills];
-              if(fusionskill){
+          if (game.specialSkills && skill.level == 3883) {
+            const fusionskill: FusionSkill =
+              game.specialSkills[
+                `${skill.name}` as keyof typeof game.specialSkills
+              ];
+            if (fusionskill) {
               embed.addFields({
                 name: skill.name,
-                value:
-                  `Fusion skill (${fusionskill.demon1} and ${fusionskill.demon2})`,
+                value: `Fusion skill (${fusionskill.demon1} and ${fusionskill.demon2})`,
                 inline: true,
               });
-            }}
-      }
+            }
+          }
+        }
         interaction.reply({ embeds: [embed], files: [file] });
       } else {
         interaction.reply("Demon not found!");
@@ -139,7 +167,9 @@ const RequestDemonCommand = {
 
     const filtered = choices
       .filter((choice) => {
-        if (choice.toLowerCase().startsWith(focusedOption.value.toLowerCase())) {
+        if (
+          choice.toLowerCase().startsWith(focusedOption.value.toLowerCase())
+        ) {
           return choice;
         }
       })
