@@ -1,7 +1,9 @@
 import Games from "../games";
+import * as fs from "fs";
 import {
   SlashCommandBuilder,
   ChatInputCommandInteraction,
+  AttachmentBuilder,
   EmbedBuilder,
   AutocompleteInteraction,
 } from "discord.js";
@@ -51,10 +53,43 @@ const RequestDemonCommand = {
         formattedSkillList.sort((a, b) => {
           return a.level - b.level;
         });
+        var file = new AttachmentBuilder(
+          `src/games/${interaction.options.getString(
+            "game",
+            true
+          )}/data/DemonImages/DroppedTheCards.webp`
+        );
+        var DemonImageName = `DroppedTheCards.webp`;
+        if (
+          fs.existsSync(
+            `src/games/${interaction.options.getString(
+              "game",
+              true
+            )}/data/DemonImages/${interaction.options.getString(
+              "demon",
+              true
+            )}.webp`
+          )
+        ) {
+          file = new AttachmentBuilder(
+            `src/games/${interaction.options.getString(
+              "game",
+              true
+            )}/data/DemonImages/${interaction.options.getString(
+              "demon",
+              true
+            )}.webp`
+          );
+          DemonImageName = `${interaction.options.getString(
+            "demon",
+            true
+          )}.webp`;
+        }
         let embed = new EmbedBuilder()
           .setColor(game.color)
           .setTimestamp()
           .setTitle(interaction.options.getString("demon", true))
+          .setThumbnail(`attachment://${DemonImageName}`)
           .setFields(
             {
               name: interaction.options.getString("game", true).startsWith("p")
@@ -72,7 +107,6 @@ const RequestDemonCommand = {
               value: " ",
             }
           );
-
         for (let i = 0; i < formattedSkillList.length; i++) {
           let skill = formattedSkillList[i];
 
@@ -99,8 +133,7 @@ const RequestDemonCommand = {
             }
           }
         }
-
-        interaction.reply({ embeds: [embed] });
+        interaction.reply({ embeds: [embed], files: [file] });
       } else {
         interaction.reply("Demon not found!");
       }
