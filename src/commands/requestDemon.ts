@@ -3,6 +3,7 @@ import * as fs from 'fs';
 import {
   SlashCommandBuilder,
   ChatInputCommandInteraction,
+  AttachmentBuilder,
   EmbedBuilder,
   AutocompleteInteraction,
 } from "discord.js";
@@ -56,7 +57,6 @@ const RequestDemonCommand = {
         formattedSkillList.sort((a, b) => {
           return a.level - b.level;
         });
-        const { AttachmentBuilder, EmbedBuilder } = require('discord.js');
         var file = new AttachmentBuilder(`src/games/${interaction.options.getString("game", true)}/data/DemonImages/DroppedTheCards.webp`);
         var DemonImageName = `DroppedTheCards.webp`;
         if (fs.existsSync(`src/games/${interaction.options.getString("game", true)}/data/DemonImages/${interaction.options.getString("demon", true)}.webp`)) {
