@@ -11,10 +11,6 @@ interface Skill {
   name: string;
   level: number;
 }
-interface FusionSkill {
-  demon1: string;
-  demon2: string;
-}
 
 const RequestDemonCommand = {
   data: new SlashCommandBuilder()
@@ -123,10 +119,10 @@ const RequestDemonCommand = {
             });
           }
 
-          if (game.specialSkills && skill.level == 3883) {
-            const fusionskill: FusionSkill =
-              game.specialSkills[
-                `${skill.name}` as keyof typeof game.specialSkills
+          if (game.options.hasFusionSkills && skill.level == 3883) {
+            const fusionskill =
+              game.options.fusionSkills![
+                `${skill.name}` as keyof typeof game.options.fusionSkills
               ];
             if (fusionskill) {
               embed.addFields({

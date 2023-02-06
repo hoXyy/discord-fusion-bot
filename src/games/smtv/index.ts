@@ -1,12 +1,12 @@
 import { Game } from 'src/types';
 import DemonData from './data/demon-data.json';
 
-const P4G: Game = {
-    color: 0xffe600,
+const SMTV: Game = {
+    color: 0xBDAB72,
     demons: DemonData,
     options: {
         hasFusionSkills: false
     }
 }
 
-export default P4G;
+export default SMTV;
