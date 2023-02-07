@@ -89,7 +89,7 @@ const RequestDemonCommand = {
           .setColor(game.color)
           .setTimestamp()
           .setTitle(interaction.options.getString("demon", true))
-          .setThumbnail(`attachment://${DemonImageName}`)
+          .setThumbnail(`attachment://${DemonImageName}`.replace(" ", "_").replace("'", ""))
           .setFields(
             {
               name: interaction.options.getString("game", true).startsWith("p")
