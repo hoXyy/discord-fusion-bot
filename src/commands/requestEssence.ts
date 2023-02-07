@@ -36,7 +36,7 @@ const RequestEssenceCommand = {
       if (demon) {
         // Get default essence image
         var file = new AttachmentBuilder(
-          `src/games/smtv/data/DemonImages/DroppedTheCards.webp`
+          `src/games/smtv/data/EssenceImages/DroppedTheCards.webp`
         );
         var EssenceImageName = `DroppedTheCards.webp`;
 
