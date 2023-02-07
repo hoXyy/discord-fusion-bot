@@ -58,6 +58,7 @@
     "affinities": [1, 6, -5, 0, 0, 0, 2, 0, 0, 0, 0],
     "lvl": 71,
     "price": 32177,
+    "essence_price": 2000,
     "race": "Fallen",
     "resists": "-sw---n",
     "skills": {
@@ -90,6 +91,7 @@
     "affinities": [0, 0, -4, 2, 0, 0, 0, 0, 0, 0, 2],
     "lvl": 10,
     "price": 1127,
+    "essence_price": 2000,
     "race": "Yoma",
     "resists": "--wn--w",
     "skills": {
@@ -105,6 +107,7 @@
     "ailments": "---s--",
     "lvl": 17,
     "price": 2232,
+    "essence_price": 2000,
     "race": "Drake",
     "resists": "-nw----",
     "skills": {
@@ -119,6 +122,7 @@
     "affinities": [0, 0, 0, 0, 0, -5, 5, 0, 3, -2, 0],
     "lvl": 40,
     "price": 14022,
+    "essence_price": 2000,
     "race": "Fiend",
     "resists": "-----wd",
     "skills": {
@@ -155,6 +159,7 @@
     "affinities": [0, -4, -4, 4, 2, 0, 0, 3, 0, 2, 0],
     "lvl": 76,
     "price": 69758,
+    "essence_price": 2000,
     "race": "Genma",
     "resists": "-wwrnsn",
     "skills": {
@@ -173,6 +178,7 @@
     "affinities": [-3, 0, 0, 2, -3, 2, 0, 0, 0, 1, 2],
     "lvl": 22,
     "price": 4100,
+    "essence_price": 2000,
     "race": "Megami",
     "resists": "---nw--",
     "skills": {
@@ -190,6 +196,7 @@
     "affinities": [2, 6, -6, 0, 0, 0, 0, 0, 0, 0, 4],
     "lvl": 82,
     "price": 50543,
+    "essence_price": 4000,
     "race": "Tyrant",
     "resists": "sdw--ss",
     "skills": {
@@ -209,6 +216,7 @@
     "ailments": "--s--s",
     "lvl": 29,
     "price": 13314,
+    "essence_price": 8000,
     "race": "Megami",
     "resists": "-wdw-n-",
     "skills": {
@@ -226,6 +234,7 @@
     "affinities": [0, 0, 4, 2, -4, 2, 0, 0, 0, 0, 0],
     "lvl": 59,
     "price": 27775,
+    "essence_price": 4000,
     "race": "Dragon",
     "resists": "--nnwnw",
     "skills": {
@@ -244,6 +253,7 @@
     "ailments": "s-----",
     "lvl": 18,
     "price": 2262,
+    "essence_price": 4000,
     "race": "Fallen",
     "resists": "--nw-w-",
     "skills": {
@@ -260,6 +270,7 @@
     "affinities": [0, 0, 0, 0, -3, 3, -4, 0, 0, 2, 2],
     "lvl": 10,
     "price": 1389,
+    "essence_price": 8000,
     "race": "Divine",
     "resists": "----wnw",
     "skills": {
@@ -276,6 +287,7 @@
     "ailments": "-s----",
     "lvl": 41,
     "price": 12694,
+    "essence_price": 8000,
     "race": "Avatar",
     "resists": "----wns",
     "skills": {
@@ -294,6 +306,7 @@
     "ailments": "-s--wn",
     "lvl": 48,
     "price": 14680,
+    "essence_price": 8000,
     "race": "Raptor",
     "resists": "---nw--",
     "skills": {
@@ -310,6 +323,7 @@
     "affinities": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     "lvl": 67,
     "price": 0,
+    "essence_price": 16000,
     "race": "Proto",
     "resists": "---nwsw",
     "skills": {
@@ -325,6 +339,7 @@
     "affinities": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     "lvl": 8,
     "price": 0,
+    "essence_price": 16000,
     "race": "Proto",
     "resists": "---nwsw",
     "skills": {
@@ -337,6 +352,7 @@
     "affinities": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     "lvl": 61,
     "price": 0,
+    "essence_price": 16000,
     "race": "Proto",
     "resists": "---nwsw",
     "skills": {
@@ -352,6 +368,7 @@
     "affinities": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     "lvl": 17,
     "price": 0,
+    "essence_price": 16000,
     "race": "Proto",
     "resists": "---nwsw",
     "skills": {
@@ -364,6 +381,7 @@
     "affinities": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     "lvl": 25,
     "price": 0,
+    "essence_price": 16000,
     "race": "Proto",
     "resists": "---nwsw",
     "skills": {
@@ -377,6 +395,7 @@
     "affinities": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     "lvl": 31,
     "price": 0,
+    "essence_price": 24000,
     "race": "Proto",
     "resists": "---nwsw",
     "skills": {
@@ -390,6 +409,7 @@
     "affinities": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     "lvl": 36,
     "price": 0,
+    "essence_price": 24000,
     "race": "Proto",
     "resists": "---nwsw",
     "skills": {
@@ -403,6 +423,7 @@
     "affinities": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     "lvl": 41,
     "price": 0,
+    "essence_price": 24000,
     "race": "Proto",
     "resists": "---nwsw",
     "skills": {
@@ -417,6 +438,7 @@
     "affinities": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     "lvl": 44,
     "price": 0,
+    "essence_price": 24000,
     "race": "Proto",
     "resists": "---nwsw",
     "skills": {
@@ -431,6 +453,7 @@
     "affinities": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     "lvl": 48,
     "price": 0,
+    "essence_price": 24000,
     "race": "Proto",
     "resists": "---nwsw",
     "skills": {
@@ -445,6 +468,7 @@
     "affinities": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     "lvl": 54,
     "price": 0,
+    "essence_price": 32000,
     "race": "Proto",
     "resists": "---nwsw",
     "skills": {
@@ -461,6 +485,7 @@
     "ailments": "s-w-s-",
     "lvl": 16,
     "price": 2024,
+    "essence_price": 32000,
     "race": "Yoma",
     "resists": "-ws----",
     "skills": {
@@ -490,6 +515,7 @@
     "affinities": [0, -4, -2, -3, -3, 0, 0, 3, 0, 0, 3],
     "lvl": 62,
     "price": 16611,
+    "essence_price": 32000,
     "race": "Kunitsu",
     "resists": "nwwwwss",
     "skills": {
@@ -507,6 +533,7 @@
     "affinities": [1, 1, 0, 0, 0, 3, -5, 0, 0, 0, 0],
     "lvl": 18,
     "price": 2567,
+    "essence_price": 32000,
     "race": "Divine",
     "resists": "---w-nw",
     "skills": {
@@ -523,6 +550,7 @@
     "affinities": [2, 0, 5, -7, 0, 0, 0, 0, 2, 0, 0],
     "lvl": 75,
     "price": 45156,
+    "essence_price": 50000,
     "race": "Tyrant",
     "resists": "--rws-s",
     "skills": {
@@ -559,6 +587,7 @@
     "affinities": [3, 5, -4, 0, 0, 0, 0, 3, 0, -4, 0],
     "lvl": 84,
     "price": 56888,
+    "essence_price": 50000,
     "race": "Fury",
     "resists": "-rw--ns",
     "skills": {
@@ -578,6 +607,7 @@
     "ailments": "-w----",
     "lvl": 54,
     "price": 18986,
+    "essence_price": 50000,
     "race": "Deity",
     "resists": "--w--nn",
     "skills": {
@@ -595,6 +625,7 @@
     "affinities": [0, -4, 4, 0, 0, 3, 0, 0, 1, 0, 0],
     "lvl": 64,
     "price": 22404,
+    "essence_price": 50000,
     "race": "Femme",
     "resists": "-ws--n-",
     "skills": {
@@ -630,6 +661,7 @@
     "affinities": [0, 0, 2, -3, 0, 0, 0, 0, 0, 1, 0],
     "lvl": 11,
     "price": 1114,
+    "essence_price": 50000,
     "race": "Brute",
     "resists": "--sw---",
     "skills": {
@@ -644,6 +676,7 @@
     "affinities": [0, 3, -5, 5, 2, 3, 0, 0, 4, -3, 0],
     "lvl": 93,
     "price": 68898,
+    "essence_price": 75000,
     "race": "Deity",
     "resists": "-swrsn-",
     "skills": {
@@ -663,6 +696,7 @@
     "ailments": "--w---",
     "lvl": 43,
     "price": 11699,
+    "essence_price": 75000,
     "race": "Holy",
     "resists": "---nw--",
     "skills": {
@@ -681,6 +715,7 @@
     "ailments": "---w--",
     "lvl": 33,
     "price": 7350,
+    "essence_price": 75000,
     "race": "Vile",
     "resists": "-----wn",
     "skills": {
@@ -698,6 +733,7 @@
     "ailments": "---s--",
     "lvl": 60,
     "price": 23778,
+    "essence_price": 75000,
     "race": "Avatar",
     "resists": "---nwnw",
     "skills": {

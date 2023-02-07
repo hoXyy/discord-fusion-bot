@@ -1,8 +1,9 @@
 import { REST, Routes } from "discord.js";
 import RequestDemonCommand from "./requestDemon";
 import PingCommand from "./ping";
+import RequestEssenceCommand from "./requestEssence";
 
-const Commands = [RequestDemonCommand, PingCommand];
+const Commands = [RequestDemonCommand, PingCommand, RequestEssenceCommand];
 
 export async function deployCommands(
   token: string,
@@ -12,10 +13,11 @@ export async function deployCommands(
   // Construct and prepare an instance of the REST module
   const rest = new REST({ version: "10" }).setToken(token);
 
-  const commands = [
-    RequestDemonCommand.data.toJSON(),
-    PingCommand.data.toJSON(),
-  ];
+  let commands: any[] = [];
+
+  Commands.forEach((command) => {
+    commands.push(command.data.toJSON());
+  });
 
   try {
     console.log(
