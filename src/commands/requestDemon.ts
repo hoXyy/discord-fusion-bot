@@ -7,6 +7,7 @@ import {
   EmbedBuilder,
   AutocompleteInteraction,
 } from "discord.js";
+
 interface Skill {
   name: string;
   level: number;
@@ -42,24 +43,13 @@ const RequestDemonCommand = {
           ) as keyof typeof game.demons
         ];
       if (demon) {
-        const rawSkillList = Object.keys(demon.skills);
-        let formattedSkillList: Skill[] = [];
-        rawSkillList.forEach((skill) => {
-          formattedSkillList.push({
-            name: skill,
-            level: demon.skills[skill as keyof typeof demon.skills],
-          });
-        });
-        formattedSkillList.sort((a, b) => {
-          return a.level - b.level;
-        });
+        // Get default demon image
         var file = new AttachmentBuilder(
-          `src/games/${interaction.options.getString(
-            "game",
-            true
-          )}/data/DemonImages/DroppedTheCards.webp`
+          `src/games/smtv/data/DemonImages/DroppedTheCards.webp`
         );
         var DemonImageName = `DroppedTheCards.webp`;
+
+        // Check if demon file for this specific demon exists, if so, use it
         if (
           fs.existsSync(
             `src/games/${interaction.options.getString(
@@ -85,19 +75,30 @@ const RequestDemonCommand = {
             true
           )}.webp`;
         }
-        let embed = new EmbedBuilder()
-          .setColor(game.color)
-          .setTimestamp()
-          .setTitle(interaction.options.getString("demon", true))
-          .setThumbnail(`attachment://${DemonImageName}`.replace(" ", "_").replace("'", ""))
-          .setFields(
+
+        // Prepare embed
+        const embed = {
+          color: game.color,
+          title: interaction.options.getString("demon", true),
+          thumbnail: {
+            url: `attachment://${DemonImageName.replace(" ", "_").replace(
+              "'",
+              ""
+            )}`,
+          },
+          fields: [
             {
               name: interaction.options.getString("game", true).startsWith("p")
                 ? "Arcana"
                 : "Race",
               value: demon.race,
+              inline: false,
             },
-            { name: "Level", value: demon.lvl.toString() },
+            {
+              name: "Level",
+              value: demon.lvl.toString(),
+              inline: false,
+            },
             {
               name: "Stats",
               value: `\n**Strength:** ${demon.stats[0]}\n**Magic:** ${demon.stats[1]}\n**Endurance:** ${demon.stats[2]}\n**Agility:** ${demon.stats[3]}\n**Luck:** ${demon.stats[4]}`,
@@ -105,27 +106,45 @@ const RequestDemonCommand = {
             {
               name: "Skills",
               value: " ",
-            }
-          );
-        for (let i = 0; i < formattedSkillList.length; i++) {
-          let skill = formattedSkillList[i];
+              inline: false,
+            },
+          ],
+          timestamp: new Date().toISOString(),
+        };
 
+        // Get array of all skills
+        const rawSkillList = Object.keys(demon.skills);
+        let formattedSkillList: Skill[] = [];
+        rawSkillList.forEach((skill) => {
+          formattedSkillList.push({
+            name: skill,
+            level: demon.skills[skill as keyof typeof demon.skills],
+          });
+        });
+
+        // Sort the skill array by level
+        formattedSkillList.sort((a, b) => {
+          return a.level - b.level;
+        });
+
+        // Add skills to embed
+        for (let i = 0; i < formattedSkillList.length; i++) {
+          const skill = formattedSkillList[i];
           if (skill.level < 100) {
-            embed.addFields({
+            embed.fields.push({
               name: skill.name,
               value:
                 skill.level == 0 ? "Innate" : `Learned at level ${skill.level}`,
               inline: true,
             });
           }
-
           if (game.options.hasFusionSkills && skill.level == 3883) {
             const fusionskill =
               game.options.fusionSkills![
                 `${skill.name}` as keyof typeof game.options.fusionSkills
               ];
             if (fusionskill) {
-              embed.addFields({
+              embed.fields.push({
                 name: skill.name,
                 value: `Fusion skill (${fusionskill.demon1} and ${fusionskill.demon2})`,
                 inline: true,
@@ -133,7 +152,11 @@ const RequestDemonCommand = {
             }
           }
         }
-        interaction.reply({ embeds: [embed], files: [file] });
+
+        interaction.reply({
+          embeds: [embed],
+          files: [file],
+        });
       } else {
         interaction.reply("Demon not found!");
       }
