@@ -50,6 +50,7 @@ type Demon = {
   affinities?: number[];
   ailments?: string;
   price?: number;
+  essence_price?: number;
 };
 
 interface Skill {
