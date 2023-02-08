@@ -76,6 +76,20 @@ const RequestDemonCommand = {
           )}.webp`;
         }
 
+        //Set demon stats for specific game
+        var stats = "";
+        switch (interaction.options.getString("game", true)) {
+          case "p3":
+          case "p4g":
+            stats = `\n**Strength:** ${demon.stats[0]}\n**Magic:** ${demon.stats[1]}\n**Endurance:** ${demon.stats[2]}\n**Agility:** ${demon.stats[3]}\n**Luck:** ${demon.stats[4]}`;
+            break;
+          case "smtv":
+            stats = `\n**HP:** ${demon.stats[0]}\n**MP:** ${demon.stats[1]}\n**Strength:** ${demon.stats[2]}\n**Vitality:** ${demon.stats[3]}\n**Magic:** ${demon.stats[4]}\n**Agility:** ${demon.stats[5]}\n**Luck:** ${demon.stats[6]}`;
+            break;
+          default:
+            break;
+        }
+
         // Prepare embed
         const embed = {
           color: game.color,
@@ -101,7 +115,7 @@ const RequestDemonCommand = {
             },
             {
               name: "Stats",
-              value: `\n**Strength:** ${demon.stats[0]}\n**Magic:** ${demon.stats[1]}\n**Endurance:** ${demon.stats[2]}\n**Agility:** ${demon.stats[3]}\n**Luck:** ${demon.stats[4]}`,
+              value: stats,
             },
             {
               name: "Skills",
