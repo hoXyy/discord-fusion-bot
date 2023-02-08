@@ -73,19 +73,9 @@ const RequestEssenceCommand = {
           },
           fields: [
             {
-              name: "Race",
-              value: demon.race,
-              inline: false,
-            },
-            {
-              name: "Level",
-              value: demon.lvl.toString(),
-              inline: false,
-            },
-            {
               name: "Price",
               value: demon.essence_price
-                ? demon.essence_price.toString()
+                ? `${demon.essence_price.toString()} Macca`
                 : "Not purchasable",
               inline: false,
             },
