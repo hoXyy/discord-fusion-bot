@@ -2,8 +2,9 @@ import { REST, Routes } from "discord.js";
 import RequestDemonCommand from "./requestDemon";
 import PingCommand from "./ping";
 import RequestEssenceCommand from "./requestEssence";
+import RequestSkillCommand from "./requestSkill";
 
-const Commands = [RequestDemonCommand, PingCommand, RequestEssenceCommand];
+const Commands = [RequestDemonCommand, PingCommand, RequestEssenceCommand, RequestSkillCommand];
 
 export async function deployCommands(
   token: string,
