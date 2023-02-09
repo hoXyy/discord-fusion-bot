@@ -14,7 +14,7 @@ const RequestSkillCommand = {
     .addStringOption((option) =>
       option
         .setName("game")
-        .setDescription("The game to get the skil from.")
+        .setDescription("The game to get the skill from.")
         .setRequired(true)
         .setAutocomplete(true)
     )
