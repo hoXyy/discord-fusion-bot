@@ -81,8 +81,15 @@ const RequestSkillCommand = {
                 cost = `${skill.cost}% HP`;
                 break;
               default:
-                const costcalc = skill.cost - 1000;
+                var costcalc = skill.cost - 1000;
                 cost = `${costcalc.toString()} SP`;
+                if (skill.unique == "Fusion Spell") {
+                  cost = `${costcalc.toString()}% SP`;
+                  if((interaction.options.getString("game", true)) == "p3p")
+                  {
+                    cost = skill.cost;
+                  }
+                }
             }
             break;
           case "smtv":
