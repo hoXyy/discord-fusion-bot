@@ -85,8 +85,7 @@ const RequestSkillCommand = {
                 cost = `${costcalc.toString()} SP`;
                 if (skill.unique == "Fusion Spell") {
                   cost = `${costcalc.toString()}% SP`;
-                  if((interaction.options.getString("game", true)) == "p3p")
-                  {
+                  if (interaction.options.getString("game", true) == "p3p") {
                     cost = skill.cost;
                   }
                 }
@@ -116,46 +115,39 @@ const RequestSkillCommand = {
           },
           fields: [
             {
-              name: typeof skill.cost !== "undefined" ? "Cost" : "",
-              value: typeof skill.cost !== "undefined" ? `${cost}` : "",
-            },
-            {
-              name: typeof skill.damage !== "undefined" ? "Damage" : "",
-              value:
-                typeof skill.damage !== "undefined" ? `${skill.damage}` : "",
-            },
-            {
-              name: typeof skill.hit !== "undefined" ? "Accuracy" : "",
-              value: typeof skill.hit !== "undefined" ? `${skill.hit}` : "",
-            },
-            {
-              name: typeof skill.power !== "undefined" ? "Power" : "",
-              value: typeof skill.power !== "undefined" ? `${skill.power}` : "",
-            },
-            {
               name: "Effect",
               value: `${skill.effect}`,
-            },
-            {
-              name: typeof skill.target !== "undefined" ? "Target" : "",
-              value:
-                typeof skill.target !== "undefined" ? `${skill.target}` : "",
-            },
-            {
-              name: typeof skill.card !== "undefined" ? "Skill Card" : "",
-              value:
-                (typeof skill.card !== "undefined" ? `${skill.card}` : "") +
-                (typeof skill.clvl !== "undefined"
-                  ? ` gives at Level ${skill.clvl}`
-                  : ""),
-            },
-            {
-              name: typeof skill.rank !== "undefined" ? "Rank" : "",
-              value: typeof skill.rank !== "undefined" ? `${skill.rank}` : "",
             },
           ],
           timestamp: new Date().toISOString(),
         };
+
+        //Pushing optional fields
+        if (skill.cost) {
+          embed.fields.push({ name: "Cost", value: cost });
+        }
+        if (skill.damage) {
+          embed.fields.push({ name: "Damage", value: skill.damage });
+        }
+        if (skill.hit) {
+          embed.fields.push({ name: "Accuracy", value: skill.hit });
+        }
+        if (skill.power) {
+          embed.fields.push({ name: "Power", value: skill.power });
+        }
+        if (skill.target) {
+          embed.fields.push({ name: "Target", value: skill.target });
+        }
+        if (skill.card) {
+          embed.fields.push({
+            name: "Skill Card",
+            value:
+              skill.card +
+              (typeof skill.clvl !== "undefined"
+                ? ` gives at Level ${skill.clvl}`
+                : ""),
+          });
+        }
 
         interaction.reply({
           embeds: [embed],
