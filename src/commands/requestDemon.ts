@@ -126,6 +126,7 @@ const RequestDemonCommand = {
           timestamp: new Date().toISOString(),
         };
 
+
         // Get array of all skills
         const rawSkillList = Object.keys(demon.skills);
         let formattedSkillList: Skill[] = [];
@@ -166,6 +167,35 @@ const RequestDemonCommand = {
             }
           }
         }
+
+         //Set demon affinities
+         if(interaction.options.getString("game", true) == "smtv")
+         {
+          const elementname: string[] = ["Physical", "Fire", "Ice", "Electricity", "Force", "Light", "Dark", "Almighty", "Ailment", "Recovery", "Support"];
+          embed.fields.push(
+            {
+              name: "Affinities",
+              value: "",
+            }
+          )
+          var affinitiesresult = "";
+           for(let i=0; i<11; i++)
+           {
+            if(demon.affinities![i] > 0)
+            {
+              affinitiesresult = `+${demon.affinities![i].toString()}`;
+            }
+            else
+            {
+              affinitiesresult = `${demon.affinities![i].toString()}`;
+            }
+             embed.fields.push({
+              name: elementname[i],
+              value: affinitiesresult,
+              inline: true,
+             })
+           }
+         }
 
         interaction.reply({
           embeds: [embed],
