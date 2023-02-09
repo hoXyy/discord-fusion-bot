@@ -2,13 +2,13 @@ import { Game } from 'src/types';
 import DemonData from './data/demon-data.json';
 import SkillData from './data/skill-data.json';
 
-const SMTV: Game = {
-    color: 0xBDAB72,
+const P3P: Game = {
+    color: 0xecb3cd,
     demons: DemonData,
     skills: SkillData,
     options: {
-        hasFusionSkills: false
+        hasFusionSkills: false,
     }
 }
 
-export default SMTV;
+export default P3P;

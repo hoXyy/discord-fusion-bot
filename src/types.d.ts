@@ -21,13 +21,15 @@ declare module "discord.js" {
 
 export interface Games {
   p3: Game;
+  p3p: Game;
   p4g: Game;
-  smtv: Game;
+  smtv: Game
 }
 
 interface Game {
   color: number;
   demons: Demons;
+  skills: SkillsInfoList;
   options: {
     hasFusionSkills: boolean;
     fusionSkills?: FusionSkills;
@@ -53,6 +55,26 @@ type Demon = {
   essence_price?: number;
 };
 
+interface SkillInfoList {
+  [key: string]: Skill;
+}
+
+//Skills used from Skill Data
+type SkillInfo = {
+  [key: string]: any;
+  cost: string;
+  effect: string;
+  element: string;
+  target: string;
+  card: string;
+  damage: string;
+  hit: number;
+  power: number;
+  rank: number;
+  clvl: number;
+};
+
+//Skills used by Demons
 interface Skill {
   [key: string]: number;
 }
