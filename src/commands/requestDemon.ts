@@ -7,6 +7,7 @@ import {
   EmbedBuilder,
   AutocompleteInteraction,
 } from "discord.js";
+import { createCanvas, loadImage } from "canvas";
 
 interface Skill {
   name: string;
@@ -45,7 +46,10 @@ const RequestDemonCommand = {
       if (demon) {
         // Get default demon image
         var file = new AttachmentBuilder(
-          `src/games/smtv/data/DemonImages/DroppedTheCards.webp`
+          `src/games/${interaction.options.getString(
+            "game",
+            true
+          )}/data/DemonImages/DroppedTheCards.webp`
         );
         var DemonImageName = `DroppedTheCards.webp`;
 
@@ -80,11 +84,243 @@ const RequestDemonCommand = {
         var stats = "";
         switch (interaction.options.getString("game", true)) {
           case "p3":
+          case "p3p":
           case "p4g":
             stats = `\n**Strength:** ${demon.stats[0]}\n**Magic:** ${demon.stats[1]}\n**Endurance:** ${demon.stats[2]}\n**Agility:** ${demon.stats[3]}\n**Luck:** ${demon.stats[4]}`;
             break;
           case "smtv":
             stats = `\n**HP:** ${demon.stats[0]}\n**MP:** ${demon.stats[1]}\n**Strength:** ${demon.stats[2]}\n**Vitality:** ${demon.stats[3]}\n**Magic:** ${demon.stats[4]}\n**Agility:** ${demon.stats[5]}\n**Luck:** ${demon.stats[6]}`;
+            break;
+          default:
+            break;
+        }
+
+        //Prepare resistances canvas
+        const canvas = createCanvas(936, 96);
+        const ctx = canvas.getContext("2d");
+        console.log(ctx);
+        const resistslist = await loadImage(
+          `src/games/${interaction.options.getString(
+            "game",
+            true
+          )}/data/ElementImages/ResistsList.png`
+        );
+        ctx.drawImage(resistslist, 0, 0, canvas.width, canvas.height);
+
+        const weakicon = await loadImage(
+          `src/games/${interaction.options.getString(
+            "game",
+            true
+          )}/data/ElementImages/Weak.png`
+        );
+        const resisticon = await loadImage(
+          `src/games/${interaction.options.getString(
+            "game",
+            true
+          )}/data/ElementImages/Resist.png`
+        );
+        const neutralicon = await loadImage(
+          `src/games/${interaction.options.getString(
+            "game",
+            true
+          )}/data/ElementImages/Neutral.png`
+        );
+        const nullicon = await loadImage(
+          `src/games/${interaction.options.getString(
+            "game",
+            true
+          )}/data/ElementImages/Null.png`
+        );
+        const drainicon = await loadImage(
+          `src/games/${interaction.options.getString(
+            "game",
+            true
+          )}/data/ElementImages/Drain.png`
+        );
+        const repelicon = await loadImage(
+          `src/games/${interaction.options.getString(
+            "game",
+            true
+          )}/data/ElementImages/Repel.png`
+        );
+
+        switch (interaction.options.getString("game", true)) {
+          case "p3":
+          case "p3p":
+          case "p4g":
+            break;
+          case "smtv":
+            var xcoordinate = 23;
+            for (let i = 0; i < 13; i++) {
+              switch (i) {
+                case 0:
+                  xcoordinate = 23;
+                  break;
+                case 1:
+                  xcoordinate = 95;
+                  break;
+                case 2:
+                  xcoordinate = 168;
+                  break;
+                case 3:
+                  xcoordinate = 242;
+                  break;
+                case 4:
+                  xcoordinate = 313;
+                  break;
+                case 5:
+                  xcoordinate = 382;
+                  break;
+                case 6:
+                  xcoordinate = 456;
+                  break;
+                case 7:
+                  xcoordinate = 528;
+                  break;
+                case 8:
+                  xcoordinate = 598;
+                  break;
+                case 9:
+                  xcoordinate = 672;
+                  break;
+                case 10:
+                  xcoordinate = 740;
+                  break;
+                case 11:
+                  xcoordinate = 812;
+                  break;
+                case 12:
+                  xcoordinate = 887;
+                  break;
+                default:
+                  break;
+              }
+              if (i < 7) {
+                switch (demon.resists[i]) {
+                  case "w":
+                    ctx.drawImage(
+                      weakicon,
+                      xcoordinate,
+                      55,
+                      weakicon.width,
+                      weakicon.height
+                    );
+                    break;
+                  case "n":
+                    ctx.drawImage(
+                      nullicon,
+                      xcoordinate,
+                      55,
+                      nullicon.width,
+                      nullicon.height
+                    );
+                    break;
+                  case "s":
+                    ctx.drawImage(
+                      resisticon,
+                      xcoordinate,
+                      55,
+                      resisticon.width,
+                      resisticon.height
+                    );
+                    break;
+                  case "d":
+                    ctx.drawImage(
+                      drainicon,
+                      xcoordinate,
+                      55,
+                      drainicon.width,
+                      drainicon.height
+                    );
+                    break;
+                  case "r":
+                    ctx.drawImage(
+                      repelicon,
+                      xcoordinate,
+                      55,
+                      repelicon.width,
+                      repelicon.height
+                    );
+                    break;
+                  default:
+                    ctx.drawImage(
+                      neutralicon,
+                      xcoordinate,
+                      66,
+                      neutralicon.width,
+                      neutralicon.height
+                    );
+                    break;
+                }
+              } else {
+                if (demon.ailments) {
+                  switch (demon.ailments[i - 7]) {
+                    case "w":
+                      ctx.drawImage(
+                        weakicon,
+                        xcoordinate,
+                        55,
+                        weakicon.width,
+                        weakicon.height
+                      );
+                      break;
+                    case "n":
+                      ctx.drawImage(
+                        nullicon,
+                        xcoordinate,
+                        55,
+                        nullicon.width,
+                        nullicon.height
+                      );
+                      break;
+                    case "s":
+                      ctx.drawImage(
+                        resisticon,
+                        xcoordinate,
+                        55,
+                        resisticon.width,
+                        resisticon.height
+                      );
+                      break;
+                    case "d":
+                      ctx.drawImage(
+                        drainicon,
+                        xcoordinate,
+                        55,
+                        drainicon.width,
+                        drainicon.height
+                      );
+                      break;
+                    case "r":
+                      ctx.drawImage(
+                        repelicon,
+                        xcoordinate,
+                        55,
+                        repelicon.width,
+                        repelicon.height
+                      );
+                      break;
+                    default:
+                      ctx.drawImage(
+                        neutralicon,
+                        xcoordinate,
+                        66,
+                        neutralicon.width,
+                        neutralicon.height
+                      );
+                      break;
+                  }
+                } else {
+                  ctx.drawImage(
+                    neutralicon,
+                    xcoordinate,
+                    66,
+                    neutralicon.width,
+                    neutralicon.height
+                  );
+                }
+              }
+            }
             break;
           default:
             break;
@@ -123,9 +359,11 @@ const RequestDemonCommand = {
               inline: false,
             },
           ],
+          image: {
+            url: `attachment://resists-list.webp`,
+          },
           timestamp: new Date().toISOString(),
         };
-
 
         // Get array of all skills
         const rawSkillList = Object.keys(demon.skills);
@@ -168,38 +406,49 @@ const RequestDemonCommand = {
           }
         }
 
-         //Set demon affinities
-         if(interaction.options.getString("game", true) == "smtv")
-         {
-          const elementname: string[] = ["Physical", "Fire", "Ice", "Electricity", "Force", "Light", "Dark", "Almighty", "Ailment", "Recovery", "Support"];
-          embed.fields.push(
-            {
-              name: "Affinities",
-              value: "",
-            }
-          )
+        //Set demon affinities
+        if (interaction.options.getString("game", true) == "smtv") {
+          const elementname: string[] = [
+            "Physical",
+            "Fire",
+            "Ice",
+            "Electricity",
+            "Force",
+            "Light",
+            "Dark",
+            "Almighty",
+            "Ailment",
+            "Recovery",
+            "Support",
+          ];
+          embed.fields.push({
+            name: "Affinities",
+            value: "",
+          });
           var affinitiesresult = "";
-           for(let i=0; i<11; i++)
-           {
-            if(demon.affinities![i] > 0)
-            {
+          for (let i = 0; i < 11; i++) {
+            if (demon.affinities![i] > 0) {
               affinitiesresult = `+${demon.affinities![i].toString()}`;
-            }
-            else
-            {
+            } else {
               affinitiesresult = `${demon.affinities![i].toString()}`;
             }
-             embed.fields.push({
+            embed.fields.push({
               name: elementname[i],
               value: affinitiesresult,
               inline: true,
-             })
-           }
-         }
+            });
+          }
+        }
 
         interaction.reply({
           embeds: [embed],
-          files: [file],
+          files: [
+            file,
+            {
+              attachment: canvas.toBuffer(),
+              name: "resists-list.webp",
+            },
+          ],
         });
       } else {
         interaction.reply("Demon not found!");
