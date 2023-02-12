@@ -103,11 +103,13 @@ const RequestDemonCommand = {
             canvas = createCanvas(1144, 192);
             ctx = canvas.getContext("2d");
             break;
-          case "p4g":
-            canvas = createCanvas(1046, 174);
+          case "p3p":
+            canvas = createCanvas(1606, 196);
             ctx = canvas.getContext("2d");
             break;
           case "p4g":
+            canvas = createCanvas(1046, 174);
+            ctx = canvas.getContext("2d");
             break;
           case "smtv":
             canvas = createCanvas(936, 96);
@@ -255,6 +257,95 @@ const RequestDemonCommand = {
             }
             break;
           case "p3p":
+            var xcoordinate = 1;
+            for (let i = 0; i < 9; i++) {
+              switch (i) {
+                case 0:
+                  xcoordinate = 114;
+                  break;
+                case 1:
+                  xcoordinate = 264;
+                  break;
+                case 2:
+                  xcoordinate = 416;
+                  break;
+                case 3:
+                  xcoordinate = 603;
+                  break;
+                case 4:
+                  xcoordinate = 755;
+                  break;
+                case 5:
+                  xcoordinate = 907;
+                  break;
+                case 6:
+                  xcoordinate = 1059;
+                  break;
+                case 7:
+                  xcoordinate = 1211;
+                  break;
+                case 8:
+                  xcoordinate = 1363;
+                  break;
+                default:
+                  break;
+              }
+              switch (demon.resists[i]) {
+                case "w":
+                  ctx.drawImage(
+                    weakicon,
+                    xcoordinate,
+                    118,
+                    weakicon.width,
+                    weakicon.height
+                  );
+                  break;
+                case "n":
+                  ctx.drawImage(
+                    nullicon,
+                    xcoordinate,
+                    118,
+                    nullicon.width,
+                    nullicon.height
+                  );
+                  break;
+                case "s":
+                  ctx.drawImage(
+                    resisticon,
+                    xcoordinate,
+                    118,
+                    resisticon.width,
+                    resisticon.height
+                  );
+                  break;
+                case "d":
+                  ctx.drawImage(
+                    drainicon,
+                    xcoordinate,
+                    118,
+                    drainicon.width,
+                    drainicon.height
+                  );
+                  break;
+                case "r":
+                  ctx.drawImage(
+                    repelicon,
+                    xcoordinate,
+                    118,
+                    repelicon.width,
+                    repelicon.height
+                  );
+                  break;
+                default:
+                  ctx.drawImage(
+                    neutralicon,
+                    xcoordinate,
+                    145,
+                    neutralicon.width,
+                    neutralicon.height
+                  );
+              }
+            }
             break;
           case "p4g":
             var xcoordinate = 1;
