@@ -138,6 +138,9 @@ const RequestSkillCommand = {
         if (skill.target) {
           embed.fields.push({ name: "Target", value: skill.target });
         }
+        if (skill.rank) {
+          embed.fields.push({ name: "Rank", value: skill.rank });
+        }
         if (skill.card) {
           embed.fields.push({
             name: "Skill Card",
