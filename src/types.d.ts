@@ -1,3 +1,4 @@
+import { Canvas } from "canvas";
 import {
   SlashCommandBuilder,
   ChatInputCommandInteraction,
@@ -23,7 +24,7 @@ export interface Games {
   p3: Game;
   p3p: Game;
   p4g: Game;
-  smtv: Game
+  smtv: Game;
 }
 
 interface Game {
@@ -33,7 +34,9 @@ interface Game {
   options: {
     hasFusionSkills: boolean;
     fusionSkills?: FusionSkills;
-  }
+  };
+  createWeakResistBanner: (demon: Demon) => Promise<Canvas>;
+  createAffinitiesBanner?: void;
 }
 
 interface Demons {
