@@ -339,7 +339,7 @@ const RequestDemonCommand = {
                 default:
                   ctx.drawImage(
                     neutralicon,
-                    xcoordinate+11,
+                    xcoordinate + 11,
                     135,
                     neutralicon.width,
                     neutralicon.height
