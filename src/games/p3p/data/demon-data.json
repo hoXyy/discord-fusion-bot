@@ -1347,7 +1347,7 @@
     },
     "stats": [39, 52, 33, 36, 39]
   },
-  "Okuninushi": {
+  "Oukuninushi": {
     "inherits": "fire",
     "lvl": 44,
     "race": "Temperance",
@@ -2303,5 +2303,16 @@
       "Zio": 0
     },
     "stats": [9, 10, 5, 10, 8]
+  },
+  "Orpheus Telos": {
+    "inherits": "all",
+    "lvl": 90,
+    "prereq": "Max All Social Links, Triple Fusion or Asura x Thanatos x Messiah x Chi You x Metatron x Helel",
+    "race": "Fool",
+    "resists": "sssssssss",
+    "skills": {
+      "Victory Cry": 97
+    },
+    "stats": [62, 62, 62, 62, 62]
   }
 }

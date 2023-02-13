@@ -45,12 +45,21 @@ const RequestDemonCommand = {
         ];
       if (demon) {
         // Get default demon image
+
         var file = new AttachmentBuilder(
           `src/games/${interaction.options.getString(
             "game",
             true
           )}/data/DemonImages/DroppedTheCards.webp`
         );
+        if (
+          interaction.options.getString("game", true) == "p3p" ||
+          interaction.options.getString("game", true) == "p4"
+        ) {
+          var file = new AttachmentBuilder(
+            `src/games/p4g/data/DemonImages/DroppedTheCards.webp`
+          );
+        }
         var DemonImageName = `DroppedTheCards.webp`;
 
         // Check if demon file for this specific demon exists, if so, use it
@@ -70,6 +79,17 @@ const RequestDemonCommand = {
               "game",
               true
             )}/data/DemonImages/${interaction.options.getString(
+              "demon",
+              true
+            )}.webp`
+          );
+          DemonImageName = `${interaction.options.getString(
+            "demon",
+            true
+          )}.webp`;
+        } else {
+          file = new AttachmentBuilder(
+            `src/games/p4g/data/DemonImages/${interaction.options.getString(
               "demon",
               true
             )}.webp`
