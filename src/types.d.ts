@@ -36,7 +36,6 @@ interface Game {
     fusionSkills?: FusionSkills;
   };
   createWeakResistBanner: (demon: Demon) => Promise<Canvas>;
-  createAffinitiesBanner?: void;
 }
 
 interface Demons {
