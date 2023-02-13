@@ -261,31 +261,31 @@ const RequestDemonCommand = {
             for (let i = 0; i < 9; i++) {
               switch (i) {
                 case 0:
-                  xcoordinate = 114;
+                  xcoordinate = 134;
                   break;
                 case 1:
-                  xcoordinate = 264;
+                  xcoordinate = 284;
                   break;
                 case 2:
-                  xcoordinate = 416;
+                  xcoordinate = 436;
                   break;
                 case 3:
-                  xcoordinate = 603;
+                  xcoordinate = 623;
                   break;
                 case 4:
-                  xcoordinate = 755;
+                  xcoordinate = 775;
                   break;
                 case 5:
-                  xcoordinate = 907;
+                  xcoordinate = 927;
                   break;
                 case 6:
-                  xcoordinate = 1059;
+                  xcoordinate = 1079;
                   break;
                 case 7:
-                  xcoordinate = 1211;
+                  xcoordinate = 1231;
                   break;
                 case 8:
-                  xcoordinate = 1363;
+                  xcoordinate = 1383;
                   break;
                 default:
                   break;
@@ -339,8 +339,8 @@ const RequestDemonCommand = {
                 default:
                   ctx.drawImage(
                     neutralicon,
-                    xcoordinate,
-                    145,
+                    xcoordinate+11,
+                    135,
                     neutralicon.width,
                     neutralicon.height
                   );
