@@ -7,6 +7,7 @@ import {
   EmbedBuilder,
   AutocompleteInteraction,
 } from "discord.js";
+import { createCanvas, loadImage } from "canvas";
 
 interface Skill {
   name: string;
@@ -45,7 +46,10 @@ const RequestDemonCommand = {
       if (demon) {
         // Get default demon image
         var file = new AttachmentBuilder(
-          `src/games/smtv/data/DemonImages/DroppedTheCards.webp`
+          `src/games/${interaction.options.getString(
+            "game",
+            true
+          )}/data/DemonImages/DroppedTheCards.webp`
         );
         var DemonImageName = `DroppedTheCards.webp`;
 
@@ -80,11 +84,527 @@ const RequestDemonCommand = {
         var stats = "";
         switch (interaction.options.getString("game", true)) {
           case "p3":
+          case "p3p":
           case "p4g":
             stats = `\n**Strength:** ${demon.stats[0]}\n**Magic:** ${demon.stats[1]}\n**Endurance:** ${demon.stats[2]}\n**Agility:** ${demon.stats[3]}\n**Luck:** ${demon.stats[4]}`;
             break;
           case "smtv":
             stats = `\n**HP:** ${demon.stats[0]}\n**MP:** ${demon.stats[1]}\n**Strength:** ${demon.stats[2]}\n**Vitality:** ${demon.stats[3]}\n**Magic:** ${demon.stats[4]}\n**Agility:** ${demon.stats[5]}\n**Luck:** ${demon.stats[6]}`;
+            break;
+          default:
+            break;
+        }
+
+        //Prepare resistances canvas
+        var canvas = createCanvas(936, 96);
+        var ctx = canvas.getContext("2d");
+        switch (interaction.options.getString("game", true)) {
+          case "p3":
+            canvas = createCanvas(1144, 192);
+            ctx = canvas.getContext("2d");
+            break;
+          case "p3p":
+            canvas = createCanvas(1606, 196);
+            ctx = canvas.getContext("2d");
+            break;
+          case "p4g":
+            canvas = createCanvas(1046, 174);
+            ctx = canvas.getContext("2d");
+            break;
+          case "smtv":
+            canvas = createCanvas(936, 96);
+            ctx = canvas.getContext("2d");
+            break;
+          default:
+            break;
+        }
+        const resistslist = await loadImage(
+          `src/games/${interaction.options.getString(
+            "game",
+            true
+          )}/data/ElementImages/ResistsList.png`
+        );
+        ctx.drawImage(resistslist, 0, 0, canvas.width, canvas.height);
+
+        const weakicon = await loadImage(
+          `src/games/${interaction.options.getString(
+            "game",
+            true
+          )}/data/ElementImages/Weak.png`
+        );
+        const resisticon = await loadImage(
+          `src/games/${interaction.options.getString(
+            "game",
+            true
+          )}/data/ElementImages/Resist.png`
+        );
+        const neutralicon = await loadImage(
+          `src/games/${interaction.options.getString(
+            "game",
+            true
+          )}/data/ElementImages/Neutral.png`
+        );
+        const nullicon = await loadImage(
+          `src/games/${interaction.options.getString(
+            "game",
+            true
+          )}/data/ElementImages/Null.png`
+        );
+        const drainicon = await loadImage(
+          `src/games/${interaction.options.getString(
+            "game",
+            true
+          )}/data/ElementImages/Drain.png`
+        );
+        const repelicon = await loadImage(
+          `src/games/${interaction.options.getString(
+            "game",
+            true
+          )}/data/ElementImages/Repel.png`
+        );
+
+        switch (interaction.options.getString("game", true)) {
+          case "p3":
+            var xcoordinate = 1;
+            for (let i = 0; i < 9; i++) {
+              switch (i) {
+                case 0:
+                  xcoordinate = 28;
+                  break;
+                case 1:
+                  xcoordinate = 149;
+                  break;
+                case 2:
+                  xcoordinate = 268;
+                  break;
+                case 3:
+                  xcoordinate = 419;
+                  break;
+                case 4:
+                  xcoordinate = 539;
+                  break;
+                case 5:
+                  xcoordinate = 659;
+                  break;
+                case 6:
+                  xcoordinate = 779;
+                  break;
+                case 7:
+                  xcoordinate = 899;
+                  break;
+                case 8:
+                  xcoordinate = 1019;
+                  break;
+                default:
+                  break;
+              }
+              switch (demon.resists[i]) {
+                case "w":
+                  ctx.drawImage(
+                    weakicon,
+                    xcoordinate,
+                    121,
+                    weakicon.width,
+                    weakicon.height
+                  );
+                  break;
+                case "n":
+                  ctx.drawImage(
+                    nullicon,
+                    xcoordinate,
+                    121,
+                    nullicon.width,
+                    nullicon.height
+                  );
+                  break;
+                case "s":
+                  ctx.drawImage(
+                    resisticon,
+                    xcoordinate,
+                    121,
+                    resisticon.width,
+                    resisticon.height
+                  );
+                  break;
+                case "d":
+                  ctx.drawImage(
+                    drainicon,
+                    xcoordinate,
+                    121,
+                    drainicon.width,
+                    drainicon.height
+                  );
+                  break;
+                case "r":
+                  ctx.drawImage(
+                    repelicon,
+                    xcoordinate,
+                    121,
+                    repelicon.width,
+                    repelicon.height
+                  );
+                  break;
+                default:
+                  ctx.drawImage(
+                    neutralicon,
+                    xcoordinate,
+                    100,
+                    neutralicon.width,
+                    neutralicon.height
+                  );
+                  break;
+              }
+            }
+            break;
+          case "p3p":
+            var xcoordinate = 1;
+            for (let i = 0; i < 9; i++) {
+              switch (i) {
+                case 0:
+                  xcoordinate = 134;
+                  break;
+                case 1:
+                  xcoordinate = 284;
+                  break;
+                case 2:
+                  xcoordinate = 436;
+                  break;
+                case 3:
+                  xcoordinate = 623;
+                  break;
+                case 4:
+                  xcoordinate = 775;
+                  break;
+                case 5:
+                  xcoordinate = 927;
+                  break;
+                case 6:
+                  xcoordinate = 1079;
+                  break;
+                case 7:
+                  xcoordinate = 1231;
+                  break;
+                case 8:
+                  xcoordinate = 1383;
+                  break;
+                default:
+                  break;
+              }
+              switch (demon.resists[i]) {
+                case "w":
+                  ctx.drawImage(
+                    weakicon,
+                    xcoordinate,
+                    118,
+                    weakicon.width,
+                    weakicon.height
+                  );
+                  break;
+                case "n":
+                  ctx.drawImage(
+                    nullicon,
+                    xcoordinate,
+                    118,
+                    nullicon.width,
+                    nullicon.height
+                  );
+                  break;
+                case "s":
+                  ctx.drawImage(
+                    resisticon,
+                    xcoordinate,
+                    118,
+                    resisticon.width,
+                    resisticon.height
+                  );
+                  break;
+                case "d":
+                  ctx.drawImage(
+                    drainicon,
+                    xcoordinate,
+                    118,
+                    drainicon.width,
+                    drainicon.height
+                  );
+                  break;
+                case "r":
+                  ctx.drawImage(
+                    repelicon,
+                    xcoordinate,
+                    118,
+                    repelicon.width,
+                    repelicon.height
+                  );
+                  break;
+                default:
+                  ctx.drawImage(
+                    neutralicon,
+                    xcoordinate + 11,
+                    135,
+                    neutralicon.width,
+                    neutralicon.height
+                  );
+              }
+            }
+            break;
+          case "p4g":
+            var xcoordinate = 1;
+            for (let i = 0; i < 7; i++) {
+              switch (i) {
+                case 0:
+                  xcoordinate = 1;
+                  break;
+                case 1:
+                  xcoordinate = 183;
+                  break;
+                case 2:
+                  xcoordinate = 328;
+                  break;
+                case 3:
+                  xcoordinate = 472;
+                  break;
+                case 4:
+                  xcoordinate = 619;
+                  break;
+                case 5:
+                  xcoordinate = 764;
+                  break;
+                case 6:
+                  xcoordinate = 908;
+                  break;
+                default:
+                  break;
+              }
+              switch (demon.resists[i]) {
+                case "w":
+                  ctx.drawImage(
+                    weakicon,
+                    xcoordinate,
+                    93,
+                    weakicon.width,
+                    weakicon.height
+                  );
+                  break;
+                case "n":
+                  ctx.drawImage(
+                    nullicon,
+                    xcoordinate,
+                    93,
+                    nullicon.width,
+                    nullicon.height
+                  );
+                  break;
+                case "s":
+                  ctx.drawImage(
+                    resisticon,
+                    xcoordinate,
+                    93,
+                    resisticon.width,
+                    resisticon.height
+                  );
+                  break;
+                case "d":
+                  ctx.drawImage(
+                    drainicon,
+                    xcoordinate,
+                    93,
+                    drainicon.width,
+                    drainicon.height
+                  );
+                  break;
+                case "r":
+                  ctx.drawImage(
+                    repelicon,
+                    xcoordinate,
+                    93,
+                    repelicon.width,
+                    repelicon.height
+                  );
+                  break;
+                default:
+                  ctx.drawImage(
+                    neutralicon,
+                    xcoordinate,
+                    93,
+                    neutralicon.width,
+                    neutralicon.height
+                  );
+                  break;
+              }
+            }
+            break;
+          case "smtv":
+            var xcoordinate = 23;
+            for (let i = 0; i < 13; i++) {
+              switch (i) {
+                case 0:
+                  xcoordinate = 23;
+                  break;
+                case 1:
+                  xcoordinate = 95;
+                  break;
+                case 2:
+                  xcoordinate = 168;
+                  break;
+                case 3:
+                  xcoordinate = 242;
+                  break;
+                case 4:
+                  xcoordinate = 313;
+                  break;
+                case 5:
+                  xcoordinate = 382;
+                  break;
+                case 6:
+                  xcoordinate = 456;
+                  break;
+                case 7:
+                  xcoordinate = 528;
+                  break;
+                case 8:
+                  xcoordinate = 598;
+                  break;
+                case 9:
+                  xcoordinate = 672;
+                  break;
+                case 10:
+                  xcoordinate = 740;
+                  break;
+                case 11:
+                  xcoordinate = 812;
+                  break;
+                case 12:
+                  xcoordinate = 887;
+                  break;
+                default:
+                  break;
+              }
+              if (i < 7) {
+                switch (demon.resists[i]) {
+                  case "w":
+                    ctx.drawImage(
+                      weakicon,
+                      xcoordinate,
+                      55,
+                      weakicon.width,
+                      weakicon.height
+                    );
+                    break;
+                  case "n":
+                    ctx.drawImage(
+                      nullicon,
+                      xcoordinate,
+                      55,
+                      nullicon.width,
+                      nullicon.height
+                    );
+                    break;
+                  case "s":
+                    ctx.drawImage(
+                      resisticon,
+                      xcoordinate,
+                      55,
+                      resisticon.width,
+                      resisticon.height
+                    );
+                    break;
+                  case "d":
+                    ctx.drawImage(
+                      drainicon,
+                      xcoordinate,
+                      55,
+                      drainicon.width,
+                      drainicon.height
+                    );
+                    break;
+                  case "r":
+                    ctx.drawImage(
+                      repelicon,
+                      xcoordinate,
+                      55,
+                      repelicon.width,
+                      repelicon.height
+                    );
+                    break;
+                  default:
+                    ctx.drawImage(
+                      neutralicon,
+                      xcoordinate,
+                      66,
+                      neutralicon.width,
+                      neutralicon.height
+                    );
+                    break;
+                }
+              } else {
+                if (demon.ailments) {
+                  switch (demon.ailments[i - 7]) {
+                    case "w":
+                      ctx.drawImage(
+                        weakicon,
+                        xcoordinate,
+                        55,
+                        weakicon.width,
+                        weakicon.height
+                      );
+                      break;
+                    case "n":
+                      ctx.drawImage(
+                        nullicon,
+                        xcoordinate,
+                        55,
+                        nullicon.width,
+                        nullicon.height
+                      );
+                      break;
+                    case "s":
+                      ctx.drawImage(
+                        resisticon,
+                        xcoordinate,
+                        55,
+                        resisticon.width,
+                        resisticon.height
+                      );
+                      break;
+                    case "d":
+                      ctx.drawImage(
+                        drainicon,
+                        xcoordinate,
+                        55,
+                        drainicon.width,
+                        drainicon.height
+                      );
+                      break;
+                    case "r":
+                      ctx.drawImage(
+                        repelicon,
+                        xcoordinate,
+                        55,
+                        repelicon.width,
+                        repelicon.height
+                      );
+                      break;
+                    default:
+                      ctx.drawImage(
+                        neutralicon,
+                        xcoordinate,
+                        66,
+                        neutralicon.width,
+                        neutralicon.height
+                      );
+                      break;
+                  }
+                } else {
+                  ctx.drawImage(
+                    neutralicon,
+                    xcoordinate,
+                    66,
+                    neutralicon.width,
+                    neutralicon.height
+                  );
+                }
+              }
+            }
             break;
           default:
             break;
@@ -123,9 +643,11 @@ const RequestDemonCommand = {
               inline: false,
             },
           ],
+          image: {
+            url: `attachment://resists-list.webp`,
+          },
           timestamp: new Date().toISOString(),
         };
-
 
         // Get array of all skills
         const rawSkillList = Object.keys(demon.skills);
@@ -168,38 +690,49 @@ const RequestDemonCommand = {
           }
         }
 
-         //Set demon affinities
-         if(interaction.options.getString("game", true) == "smtv")
-         {
-          const elementname: string[] = ["Physical", "Fire", "Ice", "Electricity", "Force", "Light", "Dark", "Almighty", "Ailment", "Recovery", "Support"];
-          embed.fields.push(
-            {
-              name: "Affinities",
-              value: "",
-            }
-          )
+        //Set demon affinities
+        if (interaction.options.getString("game", true) == "smtv") {
+          const elementname: string[] = [
+            "Physical",
+            "Fire",
+            "Ice",
+            "Electricity",
+            "Force",
+            "Light",
+            "Dark",
+            "Almighty",
+            "Ailment",
+            "Recovery",
+            "Support",
+          ];
+          embed.fields.push({
+            name: "Affinities",
+            value: "",
+          });
           var affinitiesresult = "";
-           for(let i=0; i<11; i++)
-           {
-            if(demon.affinities![i] > 0)
-            {
+          for (let i = 0; i < 11; i++) {
+            if (demon.affinities![i] > 0) {
               affinitiesresult = `+${demon.affinities![i].toString()}`;
-            }
-            else
-            {
+            } else {
               affinitiesresult = `${demon.affinities![i].toString()}`;
             }
-             embed.fields.push({
+            embed.fields.push({
               name: elementname[i],
               value: affinitiesresult,
               inline: true,
-             })
-           }
-         }
+            });
+          }
+        }
 
         interaction.reply({
           embeds: [embed],
-          files: [file],
+          files: [
+            file,
+            {
+              attachment: canvas.toBuffer(),
+              name: "resists-list.webp",
+            },
+          ],
         });
       } else {
         interaction.reply("Demon not found!");
