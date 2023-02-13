@@ -44,8 +44,8 @@ const RequestDemonCommand = {
           ) as keyof typeof game.demons
         ];
       if (demon) {
-        // Get default demon image
 
+        // Get default demon image
         var file = new AttachmentBuilder(
           `src/games/${interaction.options.getString(
             "game",
@@ -152,7 +152,7 @@ const RequestDemonCommand = {
             },
           ],
           image: {
-            url: `attachment://resists-list.webp`,
+            url: `attachment://resists-list.png`,
           },
           timestamp: new Date().toISOString(),
         };
@@ -238,7 +238,7 @@ const RequestDemonCommand = {
             file,
             {
               attachment: canvas.toBuffer(),
-              name: "resists-list.webp",
+              name: "resists-list.png",
             },
           ],
         });
