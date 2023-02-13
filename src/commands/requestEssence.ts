@@ -61,6 +61,9 @@ const RequestEssenceCommand = {
           )}.webp`;
         }
 
+        //Prepare resistances canvas
+        const canvas = await game.createWeakResistBanner(demon);
+
         // Prepare embed
         const embed = {
           color: game.color,
@@ -85,6 +88,9 @@ const RequestEssenceCommand = {
               inline: false,
             },
           ],
+          image: {
+            url: `attachment://resists-list.png`,
+          },
           timestamp: new Date().toISOString(),
         };
 
@@ -119,7 +125,13 @@ const RequestEssenceCommand = {
 
         interaction.reply({
           embeds: [embed],
-          files: [file],
+          files: [
+            file,
+            {
+              attachment: canvas.toBuffer(),
+              name: "resists-list.png",
+            },
+          ],
         });
       }
     }
